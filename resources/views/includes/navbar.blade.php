@@ -15,7 +15,7 @@
              </button>
          </div>
 
-         <!-- Menu Naviga  si -->
+         <!-- Menu Navigasi -->
          <div id="menu"
              class="hidden lg:flex flex-col lg:flex-row lg:items-center lg:gap-10 w-full lg:w-auto mt-5 lg:mt-0">
              <ul
@@ -40,15 +40,16 @@
 
      <!-- Search dan Login -->
      <div class="hidden lg:flex items-center gap-2 mt-4 lg:mt-0 w-full lg:w-auto relative">
-         <div class="relative w-full lg:w-auto">
-             <input type="text" placeholder="Cari berita..."
-                 class="border border-slate-300 rounded-full px-4 py-2 pl-8 w-full text-sm font-normal lg:w-auto focus:outline-none focus:ring-primary focus:border-primary"
-                 id="searchInput" />
-             <!-- Icon Search -->
-             <span class="absolute inset-y-0 left-3 flex items-center text-slate-400">
-                 <img src="{{ asset('assets/img/search.png') }}" alt="search" class="w-4">
-             </span>
-         </div>
+        <form action="{{ route('news.search') }}" method="GET" class="relative w-full lg:w-auto">
+            <input type="text" name="q" placeholder="Cari berita..." value="{{ request('q') }}"
+                class="border border-slate-300 rounded-full px-4 py-2 pl-8 w-full text-sm font-normal lg:w-auto focus:outline-none focus:ring-primary focus:border-primary"
+                />
+            <!-- Icon Search -->
+            <span class="absolute inset-y-0 left-3 flex items-center text-slate-400">
+                <img src="{{ asset('assets/img/search.png') }}" alt="search" class="w-4">
+            </span>
+        </form>
+
          <a href="login.html"
              class="bg-primary px-8 py-2 rounded-full text-white font-semibold h-fit text-sm lg:text-base">
              Masuk

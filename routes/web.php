@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
+Route::get('/news/search', [NewsController::class, 'search'])->name('news.search');
+
 Route::get('/{slug}', [NewsController::class, 'category'])->name('news.category');
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 

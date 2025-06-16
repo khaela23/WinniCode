@@ -22,4 +22,17 @@ class NewsController extends Controller
 
         return view('pages.news.category', compact('category'));
     }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('q');
+
+        $news = News::with(['author', 'newsCategory']) // jika ingin tampilkan relasi
+            ->where('title', 'like', '%' . $keyword . '%')
+            ->orWhere('content', 'like', '%' . $keyword . '%')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('pages.news.search', compact('news', 'keyword'));
+    }
 }
