@@ -10,7 +10,7 @@
                 <div class="swiper-slide">
                     <a href="{{ route('news.show', $banner->news->slug) }}" class="block">
                         <div class="relative flex flex-col gap-1 justify-end p-3 h-72 rounded-xl bg-cover bg-center overflow-hidden"
-                            style="background-image: url('{{ asset('storage/' . $banner->news->thumbnail) }}')">
+                            style="background-image: url('{{ asset('storage/thumbnails/' . $banner->news->thumbnail) }}')">
                             <div
                                 class="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-[rgba(0,0,0,0.4)] to-[rgba(0,0,0,0)] rounded-b-xl">
                             </div>
@@ -53,7 +53,7 @@
                             class="bg-primary text-white rounded-full w-fit px-5 py-1 font-normal ml-2 mt-2 text-sm absolute">
                             {{ $featured->newsCategory->title }}
                         </div>
-                        <img src="{{ asset('storage/' . $featured->thumbnail) }}" alt=""
+                        <img src="{{ asset('storage/thumbnails/' . $featured->thumbnail) }}" alt=""
                             class="w-full rounded-xl mb-3" style="height: 150px; object-fit: cover;">
                         <p class="font-bold text-base mb-1">{{ $featured->title }}</p>
                         <p class="text-slate-400">{{ \Carbon\Carbon::parse($featured->created_at)->format('d F Y') }}</p>
@@ -80,7 +80,7 @@
                         <div class="bg-primary text-white rounded-full w-fit px-4 py-1 font-normal ml-5 mt-5 absolute">
                             {{ $news[0]->newsCategory->title }}
                         </div>
-                        <img src="{{ asset('storage/' . $news[0]->thumbnail) }}" alt="berita1" class="rounded-2xl"
+                        <img src="{{ asset('storage/thumbnails/' . $news[0]->thumbnail) }}" alt="berita1" class="rounded-2xl"
                             style="height: 400px; width: 100%; object-fit: cover;">
                         <p class="font-bold text-xl mt-3">
                             {{ $news[0]->title }}
@@ -101,7 +101,7 @@
                     <div class="bg-primary text-white rounded-full w-fit px-4 py-1 font-normal ml-2 mt-2 absolute text-sm">
                         {{ $new->newsCategory->title }}
                     </div>
-                    <img src="{{ asset('storage/' . $new->thumbnail) }}" alt="berita2" class="rounded-xl md:max-h-48"
+                    <img src="{{ asset('storage/thumbnails/' . $new->thumbnail) }}" alt="berita2" class="rounded-xl md:max-h-48"
                         style="width: 250px; object-fit: cover;">
                     <div class="mt-2 md:mt-0">
                         <p class="font-semibold text-lg">{{ $new->title }}</p>
@@ -132,7 +132,11 @@
                 <a href="{{ route('author.show', $author->username) }}">
                     <div
                         class="flex flex-col items-center border border-slate-200 px-4 py-8 rounded-2xl hover:border-primary hover:cursor-pointer">
-                        <img src="{{ asset('storage/' . $author->avatar) }}" alt="" class="rounded-full w-24 h-24">
+                        @if($author->avatar)
+                            <img src="{{ asset('storage/avatars/' . $author->avatar) }}" alt="" class="rounded-full w-24 h-24">
+                        @else
+                            <img src="{{ asset('assets/img/User.png') }}" alt="" class="rounded-full w-24 h-24">
+                        @endif
                         <p class="font-bold text-xl mt-4">{{ $author->name }}</p>
                         <p class="text-slate-400">{{ $author->news->count() }} Berita</p>
                     </div>
@@ -157,7 +161,7 @@
                             class="bg-primary text-white rounded-full w-fit px-5 py-1 font-normal ml-2 mt-2 text-sm absolute">
                             {{ $choice->newsCategory->title }}
                         </div>
-                        <img src="{{ asset('storage/' . $choice->thumbnail) }}" alt=""
+                        <img src="{{ asset('storage/thumbnails/' . $choice->thumbnail) }}" alt=""
                             class="w-full rounded-xl mb-3" style="height: 200px; object-fit: cover;">
                         <p class="font-bold text-base mb-1">
                             {{ $choice->title }}

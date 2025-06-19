@@ -6,7 +6,11 @@
     <!-- Author -->
     <div class="flex gap-4 items-center mb-10 text-white p-10  bg-cover"
         style="background-image: url('{{ asset('assets/img/bg-profile.png') }}')">
-        <img src="{{ asset('storage/' . $author->avatar) }}" alt="profile" class="rounded-full max-w-28 ">
+        @if($author->avatar)
+            <img src="{{ asset('storage/avatars/' . $author->avatar) }}" alt="profile" class="rounded-full max-w-28 ">
+        @else
+            <img src="{{ asset('assets/img/User.png') }}" alt="profile" class="rounded-full max-w-28 ">
+        @endif
         <div class="">
             <p class="font-bold text-lg">{{ $author->name }}</p>
             <p>
@@ -26,7 +30,7 @@
                             class="bg-primary text-white rounded-full w-fit px-5 py-1 font-normal ml-2 mt-2 text-sm absolute">
                             {{ $news->newsCategory->title }}
                         </div>
-                        <img src="{{ asset('storage/' . $news->thumbnail) }}" alt="" class="w-full rounded-xl mb-3"
+                        <img src="{{ asset('storage/thumbnails/' . $news->thumbnail) }}" alt="" class="w-full rounded-xl mb-3"
                             style="height: 200px; object-fit: cover;">
                         <p class="font-bold text-base mb-1">{{ $news->title }}</p>
                         <p class="text-slate-400">{{ \Carbon\Carbon::parse($news->created_at)->format('d F Y') }}</p>

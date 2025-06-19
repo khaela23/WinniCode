@@ -1,3 +1,76 @@
+# WinniCode - Setup & Development Guide
+
+## Prasyarat
+- PHP >= 8.1
+- Composer
+- Node.js & npm
+- Database (MySQL/PostgreSQL, dsb)
+
+## Langkah Setup
+
+1. **Clone repository**
+   ```bash
+   git clone <repo-url>
+   cd WinniCode
+   ```
+
+2. **Install dependency PHP**
+   ```bash
+   composer install
+   ```
+
+3. **Install dependency frontend**
+   ```bash
+   npm install
+   ```
+
+4. **Copy file environment**
+   ```bash
+   cp .env.example .env
+   ```
+
+5. **Atur konfigurasi database**
+   - Edit file `.env` bagian DB_DATABASE, DB_USERNAME, DB_PASSWORD sesuai database lokal Anda.
+
+6. **Generate application key**
+   ```bash
+   php artisan key:generate
+   ```
+
+7. **Jalankan migrasi & seeder**
+   ```bash
+   php artisan migrate --seed
+   ```
+
+8. **Build asset frontend (Vite)**
+   ```bash
+   npm run build
+   # atau untuk development (auto-reload):
+   npm run dev
+   ```
+
+9. **Jalankan server lokal**
+   ```bash
+   php artisan serve
+   ```
+   Akses di [http://localhost:8000](http://localhost:8000)
+
+## Testing
+Jika ingin menjalankan test:
+```bash
+php artisan test
+```
+
+## Catatan
+- Untuk login ke admin, buat user lewat seeder atau register, lalu ubah role di database menjadi `admin`.
+- Asset publik ada di folder `public/assets`.
+- Jika ada error permission di storage/bootstrap, jalankan:
+  ```bash
+  chmod -R 775 storage bootstrap/cache
+  ```
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

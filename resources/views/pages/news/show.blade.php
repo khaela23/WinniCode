@@ -11,7 +11,7 @@
         <div class="flex flex-col lg:flex-row w-full gap-10">
             <!-- Berita Utama -->
             <div class="lg:w-8/12">
-                <img src="{{ asset('storage/' . $news->thumbnail) }}" alt="MotoGP"
+                <img src="{{ asset('storage/thumbnails/' . $news->thumbnail) }}" alt="MotoGP"
                     class="w-full max-h-96 rounded-xl object-cover">
 
                 <article class="mt-5">
@@ -32,8 +32,13 @@
                                         {{ $new->newsCategory->title }}
                                     </div>
                                     <div class="flex gap-3 flex-col lg:flex-row">
-                                        <img src="{{ asset('storage/' . $new->thumbnail) }}" alt=""
-                                            class="max-h-36 rounded-xl object-cover" style="width: 200px;">
+                                        @if($new->thumbnail)
+                                            <img src="{{ asset('storage/' . $new->thumbnail) }}" alt=""
+                                                class="max-h-36 rounded-xl object-cover" style="width: 200px;">
+                                        @else
+                                            <img src="{{ asset('assets/img/Berita-Demo.png') }}" alt=""
+                                                class="max-h-36 rounded-xl object-cover" style="width: 200px;">
+                                        @endif
                                         <div class="">
                                             <p class="font-bold text-sm lg:text-base">{{ \Str::limit($new->title, 40) }}</p>
                                             <p class="text-slate-400 mt-2 text-sm lg:text-xs">
@@ -57,8 +62,13 @@
         <a href="author.html">
             <div
                 class="flex flex-col lg:flex-row gap-4 items-center border border-slate-300 rounded-xl p-6 lg:p-8 hover:border-primary transition">
-                <img src="{{ asset('storage/' . $news->author->avatar) }}" alt="profile"
-                    class="rounded-full w-24 lg:w-28 border-2 border-primary">
+                @if($news->author->avatar)
+                    <img src="{{ asset('storage/avatars/' . $news->author->avatar) }}" alt="profile"
+                        class="rounded-full w-24 lg:w-28 border-2 border-primary">
+                @else
+                    <img src="{{ asset('assets/img/User.png') }}" alt="profile"
+                        class="rounded-full w-24 lg:w-28 border-2 border-primary">
+                @endif
                 <div class="text-center lg:text-left">
                     <p class="font-bold text-lg lg:text-xl">{{ $news->author->name }}</p>
                     <p class="text-sm lg:text-base leading-relaxed">
