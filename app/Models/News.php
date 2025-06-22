@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Comment; // Tambahkan ini jika belum ada
 
 class News extends Model
 {
@@ -29,5 +30,13 @@ class News extends Model
     public function banner()
     {
         return $this->hasOne(Banner::class);
+    }
+
+    /**
+     * Relasi: Berita memiliki banyak komentar
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

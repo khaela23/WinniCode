@@ -69,7 +69,7 @@
                 </div>
             </div>
         @else
-            <a href="{{ route('login') }}"
+            <a href="{{ route('user.login') }}"
                 class="bg-white px-8 py-2 rounded-full text-primary font-semibold h-fit text-sm lg:text-base transition-all duration-300 hover:bg-yellow-400 hover:text-white hover:scale-105 hover:shadow-lg transform hover:shadow-yellow-300">
                 Masuk
             </a>
